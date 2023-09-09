@@ -1,0 +1,10 @@
+{
+  "name": "Plugin Template",
+  "author": "Travis Lane (Tormak)",
+  "flags": ["debug"],
+  "publish": {
+    "tags": ["Template"],
+    "description": "A modified plugin template that will help you get started faster.",
+    "image": "https://raw.githubusercontent.com/Tormak9970/Tormak-Decky-Template/main/assets/logo.png"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "tormak-decky-template",
+  "version": "1.0.0",
+  "description": "A modified plugin template that will help you get started faster.",
+  "scripts": {
+    "build": "shx rm -rf dist && rollup -c",
+    "watch": "rollup -c -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "createDist": "rsync -r --exclude \"src/\" --exclude \"__pycache__\" --exclude \"node_modules\" /plugin/ /out/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tormak9970/Tormak-Decky-Template.git"
+  },
+  "keywords": [
+    "decky",
+    "plugin",
+    "steam-deck",
+    "template"
+  ],
+  "author": {
+    "name": "Travis Lane (Tormak)",
+    "email": "Tormak9970@gmail.com"
+  },
+  "license": "GPL-3",
+  "bugs": {
+    "url": "https://github.com/Tormak9970/Tormak-Decky-Template/issues"
+  },
+  "homepage": "https://github.com/Tormak9970/Tormak-Decky-Template#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-typescript": "^8.5.0",
+    "@types/lodash": "^4.14.196",
+    "@types/markdown-it": "^12.2.3",
+    "@types/react": "16.14.0",
+    "@types/uuid": "^9.0.2",
+    "@types/webpack": "^5.28.1",
+    "decky-frontend-lib": "^3.21.8",
+    "husky": "^8.0.3",
+    "markdown-it": "^13.0.1",
+    "rollup": "^2.79.1",
+    "rollup-plugin-import-assets": "^1.1.1",
+    "shx": "^0.3.4",
+    "tslib": "^2.6.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "mobx": "^5.15.7",
+    "react-icons": "^4.10.1",
+    "uuid": "^9.0.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "react",
+        "react-dom",
+        "decky-frontend-lib"
+      ]
+    }
+  }
+}

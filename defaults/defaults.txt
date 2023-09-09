@@ -1,0 +1,1 @@
+Delete this file and put any files or directories you wanted copied to the Plugin directory root at build time here.
