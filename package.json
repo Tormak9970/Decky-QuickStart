@@ -1,5 +1,5 @@
 {
-  "name": "tormak-decky-template",
+  "name": "quick-start",
   "version": "1.0.0",
   "description": "A modified plugin template that will help you get started faster.",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tormak9970/Tormak-Decky-Template.git"
+    "url": "git+https://github.com/Tormak9970/Decky-QuickStart.git"
   },
   "keywords": [
     "decky",
@@ -24,9 +24,9 @@
   },
   "license": "GPL-3",
   "bugs": {
-    "url": "https://github.com/Tormak9970/Tormak-Decky-Template/issues"
+    "url": "https://github.com/Tormak9970/Decky-QuickStart/issues"
   },
-  "homepage": "https://github.com/Tormak9970/Tormak-Decky-Template#readme",
+  "homepage": "https://github.com/Tormak9970/Decky-QuickStart#readme",
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",

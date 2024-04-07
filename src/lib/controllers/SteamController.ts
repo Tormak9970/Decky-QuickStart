@@ -8,6 +8,8 @@ export class SteamController {
   private hasLoggedIn = false;
   private hasLoggedOut = false;
 
+  // TODO: put wrappers for SteamClient methods here.
+
   /**
    * Registers a hook for when the user's login state changes.
    * @param onLogin Function to run on login.

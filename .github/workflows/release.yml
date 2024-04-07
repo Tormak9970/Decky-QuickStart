@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-20.04
     outputs:
       release_id: ${{ steps.create-release.outputs.result }}
-      change_log: ${{ steps.changelog.outputs.clean_changelog }}
+      change_log: ${{ steps.changelog.outputs.changelog }}
       version: ${{ steps.changelog.outputs.version }}
       tag: ${{ steps.changelog.outputs.tag }}
 
@@ -25,25 +25,28 @@ jobs:
         with:
           node-version: 16
 
-      - name: Conventional Changelog Action
+      - name: Generate Changelog for Release
         id: changelog
-        uses: ./.github/workflows/custom-changelog
+        uses: Tormak9970/reliable-changelog@v1.1
         with:
           github-token: ${{ secrets.github_token }}
+          current-version: "./package.json"
+          version-path: "version"
+          patch-version-bump-interval: "10"
 
       - name: Create Release
         id: create-release
         uses: actions/github-script@v6
         env:
           RELEASE_TAG: ${{ steps.changelog.outputs.tag }}
-          RELEASE_LOG: ${{ steps.changelog.outputs.clean_changelog }}
+          RELEASE_LOG: ${{ steps.changelog.outputs.changelog }}
         with:
           script: |
             const { data } = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag_name: `${process.env.RELEASE_TAG}`,
-              name: `PluginTemplate ${process.env.RELEASE_TAG}`,
+              name: `QuickStart ${process.env.RELEASE_TAG}`,
               body: `${process.env.RELEASE_LOG}`,
               draft: true,
               prerelease: false
@@ -76,7 +79,7 @@ jobs:
       - name: Install Frontend Dependencies
         run: pnpm install
 
-      - name: Build TabMaster
+      - name: Build QuickStart
         uses: actions/github-script@v6
         env:
           release_id: ${{ needs.create-release.outputs.release_id }}
@@ -130,7 +133,7 @@ jobs:
 
             // * once finished, make folder with all files in includeInBuild
             const bundleWrapperPath = path.join(cwdPath, "bundle");
-            const bundlePath = path.join(bundleWrapperPath, "PluginTemplate");
+            const bundlePath = path.join(bundleWrapperPath, "QuickStart");
             fs.mkdirSync(bundlePath, { recursive: true });
             fs.mkdirSync(path.join(bundlePath, "dist"));
 
@@ -146,7 +149,7 @@ jobs:
             
             if (fs.existsSync(defaultsPath)) {
               const defaultContents = fs.readdirSync(defaultsPath, { withFileTypes: true });
-              copyDirRecursive("defaults", defaultContents, `bundle${path.sep}PluginTemplate`);
+              copyDirRecursive("defaults", defaultContents, `bundle${path.sep}QuickStart`);
             }
 
             // * zip
@@ -157,7 +160,7 @@ jobs:
             await zip(bundleWrapperPath, outputZipPath, {compression: COMPRESSION_LEVEL.high});
 
             // * upload to release
-            await uploadReleaseAsset(`PluginTemplate_${process.env.release_tag}.zip`, fs.readFileSync(outputZipPath));
+            await uploadReleaseAsset(`QuickStart_${process.env.release_tag}.zip`, fs.readFileSync(outputZipPath));
 
   publish-release:
     needs: [create-release, build-plugin]

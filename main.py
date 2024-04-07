@@ -4,6 +4,11 @@ import decky_plugin
 from settings import SettingsManager
 from typing import TypeVar
 
+
+Initialized = False
+T = TypeVar("T")
+
+
 def log(txt):
   decky_plugin.logger.info(txt)
 
@@ -13,7 +18,6 @@ def warn(txt):
 def error(txt):
   decky_plugin.logger.error(txt)
 
-Initialized = False
 
 class Plugin:
   demo: str
@@ -28,7 +32,7 @@ class Plugin:
     elif level == 2:
       error(message)
 
-  # Plugin settings getters
+  # * Plugin settings getters
   async def get_demo(self) -> dict[str, dict] | None:
     """
     Waits until demo is loaded, then returns demo
@@ -40,7 +44,9 @@ class Plugin:
       
     return Plugin.demo
   
-  # Plugin settings setters
+  # TODO: define additional settings getters here
+  
+  # * Plugin settings setters
   async def set_demo(self, demo: str):
     Plugin.demo = demo
     await Plugin.set_setting(self, "demo", Plugin.demo)
@@ -51,10 +57,12 @@ class Plugin:
     Reads the json from disk
     """
     Plugin.settings.read()
-    # TODO: assign your settings to plugin properties here
-    Plugin.demo = await Plugin.get_setting(self, "demo", "Show Toast")
 
-  T = TypeVar("T")
+    # TODO: assign your settings to plugin properties here
+
+    Plugin.demo = await Plugin.get_setting(self, "demo", "Show Toast")
+  
+  # TODO: define additional settings setters here
 
   # Plugin settingsManager wrappers
   async def get_setting(self, key, default: T) -> T:
@@ -98,7 +106,7 @@ class Plugin:
     Plugin.settings = SettingsManager(name="settings", settings_directory=os.environ["DECKY_PLUGIN_SETTINGS_DIR"])
     await Plugin.read(self)
 
-    log("Initializing Plugin.")
+    log("Initializing QuickStart.")
 
   # Function called first during the unload process, utilize this to handle your plugin being removed
   async def _unload(self):

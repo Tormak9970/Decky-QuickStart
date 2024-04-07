@@ -26,7 +26,7 @@ export const PluginContextProvider: FC<ProviderProps> = ({
     }
   }, []);
 
-  //* Put all of your setter wrappers here.
+  // * Put all of your setter wrappers here.
   const setButtonLabel = (label: string) => {
     PluginStateClass.setButtonLabel(label);
   }
