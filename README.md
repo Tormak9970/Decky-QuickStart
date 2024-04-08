@@ -24,7 +24,7 @@ A modified version of the [Decky Plugin Template](https://github.com/SteamDeckHo
 4. In VSCode, go to the `Remote Explorer` tab, and add a new target. Enter `your_deck_user@ip_address` in the field, and then connect with your sudo password
 5. Once you've connected, open the Desktop directory of your Steamdeck (you'll need to enter your password again)
 6. (**Optional**) make a directory to store your in dev plugins in (ex: I made a dev-plugins directory)
-7. Run `sudo ln -S ~/homebrew/plugins/YourPluginName ~/Desktop/dev-plugins/YourPluginName` (This is to avoid having to authenticate every time you edit your plugin)
+7. Run `sudo ln -s ~/Desktop/dev-plugins/YourPluginName ~/homebrew/plugins` (This is to avoid having to authenticate every time you edit your plugin)
 
 ### Deploying
 1. In your plugin directory (on your machine), run `pnpm build`
