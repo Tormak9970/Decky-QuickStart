@@ -1,5 +1,4 @@
 # Decky QuickStart Template
-
 A modified version of the [Decky Plugin Template](https://github.com/SteamDeckHomebrew/decky-plugin-template) that helps you get up and running faster, and includes a variety of quality of life changes.
 
 
@@ -8,14 +7,14 @@ A modified version of the [Decky Plugin Template](https://github.com/SteamDeckHo
  - Automatic changelog generation and plugin building with GitHub Actions.
  - Intuitive project structure.
  - Helpful comments throughout.
+ - Examples of patching.
 
 
 ## Examples of Plugins Made with QuickStart
+ - [Deck P2P](https://github.com/Tormak9970/Deck-P2P) - A Steamdeck plugin for Peer-2-Peer networking in gamemode.
 
-<!-- TODO -->
 
-
-## Testing on Your Steamdeck
+## Developing Your Plugin
 
 ### Setup
 1. Install the recommended VSCode extensions for this repository
@@ -33,14 +32,31 @@ A modified version of the [Decky Plugin Template](https://github.com/SteamDeckHo
 4. If you have files in `./defaults`, copy those into the directory as well (ex: `./defaults/docs` becomes `~/Desktop/dev-plugins/YourPluginName/docs`)
 5. Run `sudo systemctl restart plugin_loader` on your deck
 
-
-## Debugging
-
-<!-- TODO: checking log files -->
-<!-- TODO: CEF https://wiki.deckbrew.xyz/en/plugin-dev/cef-debugging -->
+### Debugging
+ - **Backend:** logs are output to `~/homebrew/logs/YourPluginName/logs` (the log files are organized by date and time). These are useful for checking for debugging your python files
+ - **Frontend:** logs are output to the CEF console (if you use the `LogController`, they are also sent to the backend log file). For more details on using the CEF debugger, check the [deckbrew wiki](https://wiki.deckbrew.xyz/en/plugin-dev/cef-debugging)
 
 
-## Your TODO:
+## Components of a Decky Plugin
+
+### Config Files
+
+
+### Resources
+
+
+### The Frontend
+
+
+### The Backend
+
+#### Python
+The core of a plugin's backend is written in Python. This is where any interaction with the filesystem and hardware as well as saving/loading settings will occur. This can be left extremely barebones if you don't need it, but most plugins at least use `main.py` for setting up logging and settings.
+
+#### Compiled Binaries
+I'm not very familiar with this process but effectively you can write your backend in another language and run the compiled binary from python. Take a look at [Powertools](https://github.com/NGnius/PowerTools) for a good reference.
+
+## Your TODO
  - package.json
    - [ ] Change the plugin name
    - [ ] Change the the author name
@@ -75,7 +91,7 @@ A modified version of the [Decky Plugin Template](https://github.com/SteamDeckHo
  - Remove any files you dont need
 
 
-## Publishing
+## Publishing Your Plugin
  1. Create a logo and place it in `./assets/`. (I recommend overlaying it over a screenshot of the plugin)
  2. Fork [decky-plugin-database](https://github.com/SteamDeckHomebrew/decky-plugin-database/fork) and make a new branch with the name of your plugin
  3. Open up your fork on your computer, and add your plugin as a Git Submodule (see below)
@@ -83,7 +99,7 @@ A modified version of the [Decky Plugin Template](https://github.com/SteamDeckHo
  5. Make a Pull Request to the `decky-plugin-database` repository
 
 
-## Updates
+## Making Updates
  1. Sync the branch of your `decky-plugin-database` fork
  2. Open up your fork on your computer, and update the Git Submodule for your plugin (see below)
  3. Push the changes
@@ -92,13 +108,11 @@ A modified version of the [Decky Plugin Template](https://github.com/SteamDeckHo
 
 ## Good Practices
  - All custom styling rules should be wrapped in a scoping class with the name of your plugin in it
- - Use Decky Frontend Lib (DFL) where ever possible, to reduce maintenance required for your plugin.
- - Notify users when errors occur
-
-
-## Some Additional Tips
- - Validate your settings after they are loaded on the frontend, sometimes weird things happen to your settings file
- - Always define fallbacks for settings when loading them
+ - Use [Decky Frontend Lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib) (DFL) where ever possible, to reduce maintenance required for your plugin
+ - If you find new components, PR them to DFL so others can use them and they won't break in the future
+ - Notify users when errors occur in your plugin
+ - Validate your settings after they are loaded on the frontend, sometimes weird things happen to your settings file, or users try to edit them by hand
+ - Always define fallbacks for settings when loading them, and check for errors
 
 
 ## Adding a Git Submodule
@@ -111,5 +125,11 @@ A modified version of the [Decky Plugin Template](https://github.com/SteamDeckHo
  2. git submodule update --remote "plugins/YourPluginName"
 
 
+## Other Good Resources
+ - Talk to other plugin devs in the [Decky Homebrew Discord](https://decky.xyz/discord)
+ - Learn by example, checkout the multitude of existing plugins in the [decky plugin database](https://github.com/SteamDeckHomebrew/decky-plugin-database)
+ - Check the [Deckbrew wiki](https://wiki.deckbrew.xyz/)
+ - Take a look at [DFL](https://github.com/SteamDeckHomebrew/decky-frontend-lib), its a great way to see what SteamOS' frontend has to offer
+
 ## Licensing
- - This program is licensed under the [GNU General Public License Version 3](https://www.gnu.org/licenses/#GPL) and [BSD 3-Clause License](https://opensource.org/license/bsd-3-clause/) <br/>
+This program is licensed under the [GNU General Public License Version 3](https://www.gnu.org/licenses/#GPL) and [BSD 3-Clause License](https://opensource.org/license/bsd-3-clause/) <br/>
