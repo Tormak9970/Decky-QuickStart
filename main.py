@@ -112,6 +112,10 @@ class Plugin:
   async def _unload(self):
     decky_plugin.logger.info("Unloading Plugin.")
 
+  # Function called when the plugin is uninstalled
+  async def _uninstall(self):
+    decky_plugin.logger.info("Uninstalling Plugin.")
+
   # Migrations that should be performed before entering `_main()`.
   async def _migration(self):
     pass
