@@ -39,14 +39,50 @@ A modified version of the [Decky Plugin Template](https://github.com/SteamDeckHo
 
 ## Components of a Decky Plugin
 
-### Config Files
+### Configuration
 
+#### plugin.json
+This is the core config file for your plugin
+```json
+{
+  "name": "", // The name of your plugin
+  "author": "", // Your name/username
+  "flags": [], // Flags for your plugin. Most common ones include "debug" and "root"
+  "publish": {
+    "tags": [], // These tags will show up on the decky store. Put key terms for your plugin here
+    "description": "", // The store description for your plugin
+    "image": "" // The store image for your plugin
+  }
+}
+```
+
+#### package.json
+Your typical Node.js package.json. Contains info about the project, the author, where to report bugs, etc.
+
+#### The definePlugin Method
+This method contains additional configuration options for your plugin
+```tsx
+export default definePlugin((serverAPI: ServerAPI) => {
+  // This function is run when the plugin is initialized. See index.tsx for more info.
+
+  return {
+    title: <div className={staticClasses.Title}>Your Plugin's Name</div>, // The name to show in the QAM
+    content: <QuickAccessContent />, // A react component containing the plugin's QAM content.
+    icon: <LuPartyPopper />, // A react icon that represents the plugin
+    alwaysRender: false, // Whether the plugin's state should be preserved while the QAM is closed.
+    onDismount: () => {
+      // Function to run when the plugin dismounts
+    }
+  };
+});
+```
 
 ### Resources
 
+Any additional files your plugin uses (such as bash scripts, images, etc) can be put in the `defaults` directory. These files/folders will be moved to the root of the plugin during install. For example, `./YourPlugin/defaults/myScript.sh` becomes `./YourPlugin/myScript.sh` when installed.
 
 ### The Frontend
-
+This is where the majority of a plugin usually goes. You can add custom routes and modals, modify the SteamOS UI, and much much more. This is all done with the help of the [Decky Frontend Lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib).
 
 ### The Backend
 

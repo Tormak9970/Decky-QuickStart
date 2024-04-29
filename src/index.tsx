@@ -51,6 +51,7 @@ export default definePlugin((serverAPI: ServerAPI) => {
         <QuickAccessContent />
       </PluginContextProvider>,
     icon: <LuPartyPopper />,
+    alwaysRender: false,
     onDismount: () => {
       // TODO: unregister any route patches here.
 
