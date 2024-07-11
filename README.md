@@ -144,8 +144,8 @@ I'm not very familiar with this process but effectively you can write your backe
 
 ## Good Practices
  - All custom styling rules should be wrapped in a scoping class with the name of your plugin in it
- - Use [Decky Frontend Lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib) (DFL) where ever possible, to reduce maintenance required for your plugin
- - If you find new components, PR them to DFL so others can use them and they won't break in the future
+ - Use [@decky/ui](https://github.com/SteamDeckHomebrew/decky-frontend-lib) where ever possible, to reduce maintenance required for your plugin
+ - If you find new components, PR them to @decky/ui so others can use them and they won't break in the future
  - Notify users when errors occur in your plugin
  - Validate your settings after they are loaded on the frontend, sometimes weird things happen to your settings file, or users try to edit them by hand
  - Always define fallbacks for settings when loading them, and check for errors
@@ -165,7 +165,7 @@ I'm not very familiar with this process but effectively you can write your backe
  - Talk to other plugin devs in the [Decky Homebrew Discord](https://decky.xyz/discord)
  - Learn by example, checkout the multitude of existing plugins in the [decky plugin database](https://github.com/SteamDeckHomebrew/decky-plugin-database)
  - Check the [Deckbrew wiki](https://wiki.deckbrew.xyz/)
- - Take a look at [DFL](https://github.com/SteamDeckHomebrew/decky-frontend-lib), its a great way to see what SteamOS' frontend has to offer
+ - Take a look at [@decky/ui](https://github.com/SteamDeckHomebrew/decky-frontend-lib), its a great way to see what SteamOS' frontend has to offer
 
 ## Licensing
 This program is licensed under the [GNU General Public License Version 3](https://www.gnu.org/licenses/#GPL) and [BSD 3-Clause License](https://opensource.org/license/bsd-3-clause/) <br/>

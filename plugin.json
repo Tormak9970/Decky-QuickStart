@@ -2,6 +2,7 @@
   "name": "QuickStart",
   "author": "Travis Lane (Tormak)",
   "flags": ["debug"],
+  "api_version": 1,
   "publish": {
     "tags": ["Template"],
     "description": "A modified plugin template that will help you get started faster.",

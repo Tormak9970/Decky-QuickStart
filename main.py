@@ -1,6 +1,6 @@
 import asyncio
 import os
-import decky_plugin
+import decky
 from settings import SettingsManager
 from typing import TypeVar
 
@@ -10,13 +10,13 @@ T = TypeVar("T")
 
 
 def log(txt):
-  decky_plugin.logger.info(txt)
+  decky.logger.info(txt)
 
 def warn(txt):
-  decky_plugin.logger.warn(txt)
+  decky.logger.warn(txt)
 
 def error(txt):
-  decky_plugin.logger.error(txt)
+  decky.logger.error(txt)
 
 
 class Plugin:
@@ -110,11 +110,11 @@ class Plugin:
 
   # Function called first during the unload process, utilize this to handle your plugin being removed
   async def _unload(self):
-    decky_plugin.logger.info("Unloading Plugin.")
+    decky.logger.info("Unloading Plugin.")
 
   # Function called when the plugin is uninstalled
   async def _uninstall(self):
-    decky_plugin.logger.info("Uninstalling Plugin.")
+    decky.logger.info("Uninstalling Plugin.")
 
   # Migrations that should be performed before entering `_main()`.
   async def _migration(self):

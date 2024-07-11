@@ -1,4 +1,3 @@
-import { ServerAPI } from "decky-frontend-lib";
 import { PythonInterop } from "./PythonInterop";
 import { SteamController } from "./SteamController";
 import { LogController } from "./LogController";
@@ -8,9 +7,6 @@ import { PluginState } from "../../state/PluginState";
  * Main controller class for the plugin.
  */
 export class PluginController {
-  // * This gives you access to the server api from your main controller class.
-  private static server: ServerAPI;
-
   // * This gives you access to the plugin state from your main controller class.
   private static pluginState: PluginState;
 
@@ -18,12 +14,11 @@ export class PluginController {
 
   /**
    * Sets the plugin's serverAPI.
-   * @param server The serverAPI to use.
+   * @param pluginState The plugin's state management.
    */
-  static setup(server: ServerAPI, pluginState: PluginState): void {
+  static setup(pluginState: PluginState): void {
     LogController.setup("QuickStart", "ff3e00");
 
-    this.server = server;
     this.pluginState = pluginState;
     this.steamController = new SteamController();
   }

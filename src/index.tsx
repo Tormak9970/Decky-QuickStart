@@ -1,13 +1,8 @@
-import {
-  definePlugin,
-  ServerAPI,
-  staticClasses,
-} from "decky-frontend-lib";
-
 import { LuPartyPopper } from "react-icons/lu";
+import { definePlugin, routerHook } from "@decky/api";
+import { staticClasses } from "@decky/ui";
 
 import { PluginController } from "./lib/controllers/PluginController";
-import { PythonInterop } from "./lib/controllers/PythonInterop";
 import { PluginContextProvider } from "./state/PluginContext";
 import { PluginState } from "./state/PluginState";
 import { QuickAccessContent } from "./components/QuickAccessContent";
@@ -21,16 +16,15 @@ declare global {
   let securitystore: SecurityStore;
 }
 
-export default definePlugin((serverAPI: ServerAPI) => {
+export default definePlugin(() => {
   // TODO: define any route patches here
   // ex: let libraryPatch: RoutePatch;
 
-  PythonInterop.setServer(serverAPI);
   const pluginState = new PluginState()
-  PluginController.setup(serverAPI, pluginState);
+  PluginController.setup(pluginState);
 
   // TODO: define any custom routes here
-  serverAPI.routerHook.addRoute("/quick-start-router", () => (
+  routerHook.addRoute("/quick-start-router", () => (
     <PluginContextProvider PluginStateClass={pluginState}>
       <PluginRouterDemo />
     </PluginContextProvider>
@@ -56,7 +50,7 @@ export default definePlugin((serverAPI: ServerAPI) => {
       // TODO: unregister any route patches here.
 
       // TODO: remove any custom routes here
-      serverAPI.routerHook.removeRoute("/quick-start-router");
+      routerHook.removeRoute("/quick-start-router");
 
       loginUnregisterer.unregister();
       PluginController.dismount();
